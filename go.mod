@@ -1,3 +1,3 @@
-module monkey-lang
+module turkey-lang
 
 go 1.22.5
