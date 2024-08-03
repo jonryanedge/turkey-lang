@@ -27,7 +27,17 @@ const (
 	BUILTIN_OBJ      = "BUILTIN"
 	ARRAY_OBJ        = "ARRAY"
 	HASH_OBJ         = "HASH"
+	SHOW_OBJ         = "SHOW"
 )
+
+type Show struct {
+	Node ast.Node
+}
+
+func (s *Show) Type() ObjectType { return SHOW_OBJ }
+func (s *Show) Inspect() string {
+	return "SHOW(" + s.Node.String() + ")"
+}
 
 type Hashable interface {
 	HashKey() HashKey
