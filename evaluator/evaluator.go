@@ -61,6 +61,9 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		body := node.Body
 		return &object.Function{Parameters: params, Env: env, Body: body}
 	case *ast.CallExpression:
+		if node.Function.TokenLiteral() == "show" {
+			return show(node.Arguments[0])
+		}
 		function := Eval(node.Function, env)
 		if isError(function) {
 			return function
@@ -92,6 +95,10 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		return evalHashLiteral(node, env)
 	}
 	return nil
+}
+
+func show(node ast.Node) object.Object {
+	return &object.Show{Node: node}
 }
 
 func applyFunction(fn object.Object, args []object.Object) object.Object {
