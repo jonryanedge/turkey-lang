@@ -73,6 +73,14 @@ func TestShowPlay(t *testing.T) {
 			`let foobar = 8; show(play(foobar))`,
 			`8`,
 		},
+		{
+			`show(play(true))`,
+			`true`,
+		},
+		{
+			`show(play(true == false))`,
+			`false`,
+		},
 	}
 
 	for _, tt := range tests {
