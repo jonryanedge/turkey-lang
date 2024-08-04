@@ -81,6 +81,15 @@ func TestShowPlay(t *testing.T) {
 			`show(play(true == false))`,
 			`false`,
 		},
+		{
+			`show(play(show(4 + 4)))`,
+			`(4 + 4)`,
+		},
+		{
+			`let showInfixExpression = show(4 + 4);
+      show(play(4 + 4) + play(showInfixExpression))`,
+			`(8 + (4 + 4))`,
+		},
 	}
 
 	for _, tt := range tests {
